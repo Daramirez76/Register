@@ -43,6 +43,7 @@ class LoginController
                         'usuario'    => $result['usuario'],
                         'email'      => $result['email'],
                     ],
+                    'redirect' => '../dashboard/dashboard.html',
                     'message' => 'Login exitoso'
                 ];
             }

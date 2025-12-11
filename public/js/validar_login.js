@@ -60,10 +60,13 @@ function enviarLogin(usuario, contraseña) {
         if (data.success) {
             mostrarExito(data.message || 'Login exitoso. Redirigiendo...');
 
-            // Aquí puedes guardar datos en sessionStorage/localStorage si quieres
+            // Si el backend devuelve una URL de redirect, usarla; si no, usar la ruta por defecto
             setTimeout(() => {
-                // ajusta la ruta según tu home real
-                window.location.href = './../../index.html';
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                } else {
+                    window.location.href = './../../index.html';
+                }
             }, 1500);
         } else {
             mostrarError(data.message || 'Usuario o contraseña incorrectos');
