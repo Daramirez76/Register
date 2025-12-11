@@ -21,8 +21,18 @@ class User
     private function getConnection(): PDO
     {
         if (!isset($this->conn)) {
-            $this->conn = new PDO('sqlite:' . self::DB_PATH);
+            $host = '127.0.0.1';
+            $port = 3306;
+            $db   = 'sistema_usuarios';
+            $user = 'appuser';      
+            $pass = 'AppPass123!';  
+
+            $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
+
+            $this->conn = new PDO($dsn, $user, $pass);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
         }
         return $this->conn;
     }
